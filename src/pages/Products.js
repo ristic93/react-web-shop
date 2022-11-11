@@ -1,20 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import img1 from '../../src/img/boots.jpg';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import ProductsContext from '../contexts/ProductsContext';
 
 const Products = () => {
 
-    const [products, setProducts] = useState([]);
+    const { products, setProducts } = useContext(ProductsContext);
 
-    useEffect(() => {
-        fetch('https://dummyjson.com/products?limit=10')
-            .then(res => res.json())
-            .then((data) => {
-                setProducts(data.products);
-            })
-            .catch((err) => console.log(err));
-    }, [])
-
-    console.log(products);
 
     return (
         <section className="products">
@@ -22,18 +13,17 @@ const Products = () => {
                 <h2>#Products</h2>
             </article>
             <article className='container'>
-                {products.map((product, idx) => {
+                {products.map((product) => {
                     return (
-                        <div className="item">
-                            <a href={`single/${product.id}`}>
+                        <div key={product.id} className="item">
+                            <Link to={`single/${product.id}`}>
                                 <img src={product.thumbnail} alt="" />
-                                <h3>{product.title}</h3>
+                                <h3>{product.title.substring(0, 17)}</h3>
                                 <p>${product.price}</p>
-                            </a>
+                            </Link>
                         </div>
                     )
                 })}
-
             </article>
         </section>
     )
