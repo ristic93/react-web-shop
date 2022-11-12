@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 
 const FeaturedItems = () => {
 
+    const { products } = useContext(ProductsContext);
+
     const responsive = {
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
@@ -25,7 +27,6 @@ const FeaturedItems = () => {
         }
     };
 
-    const { products, setProducts } = useContext(ProductsContext);
 
     return (
         <section className="featuredItems container">
@@ -47,8 +48,8 @@ const FeaturedItems = () => {
                 {products.map(product => {
                     return (
                         <div key={product.id} className="item">
-                            <Link to="single1.html">
-                                <img src={product.thumbnail} alt="" />
+                            <Link to={`/single/${product.id}`}>
+                                <img src={product.thumbnail} alt="featured photo" />
                                 <h3>{product.title.substring(0, 17)}</h3>
                                 <p>${product.price}</p>
                             </Link>
@@ -57,8 +58,8 @@ const FeaturedItems = () => {
                 })}
             </Carousel>
         </section>
-    )
-}
+    );
+};
 
 export default FeaturedItems;
 

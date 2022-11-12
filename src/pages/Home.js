@@ -5,6 +5,7 @@ import Info from '../components/Info';
 import Newsletter from '../components/Newsletter';
 
 const Home = () => {
+    
     return (
         <>
             <HeroHeader></HeroHeader>
@@ -12,7 +13,7 @@ const Home = () => {
             <Newsletter></Newsletter>
             <Info></Info>
         </>
-    )
-}
+    );
+};
 
 export default Home;

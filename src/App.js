@@ -14,12 +14,15 @@ import Single from "./pages/Single";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
+
   return (
     <>
       <ProductsProvider>
         <BrowserRouter>
+          <ScrollToTop />
           <Topbar />
           <Navbar />
 
@@ -33,6 +36,7 @@ const App = () => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>
+
 
           <Footer />
         </BrowserRouter>

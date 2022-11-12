@@ -4,15 +4,15 @@
 $headings: 'Poppins', sans-serif;
 $bodyFont: 'Lato', sans-serif;
 $fontSize: 16px;
-$transition: .3s ease-in-out;
 $lightgray: #5a5454;
 $white: #fff;
 $black: #1e1e1e;
 $primary: #47377d;
 $secondary: #f1b80e;
 $text: #4a4a4a;
-$borders: #eeeeee;
-$transition: 0.3s linear;
+$transition: .3s linear;
+$boxShadow: 3px 5px 14px $black;
+$textShadow: 3px 2px 8px $white;
 
 /***** mixins *****/
 
@@ -93,6 +93,7 @@ button {
     border: none;
     color: $white;
     transition: $transition;
+    box-shadow: $boxShadow;
     &:hover {
         background: $secondary;
         color: $black;
@@ -197,15 +198,16 @@ header {
             h1 {
                 font-size: 6rem;
                 color: $secondary;
-                text-shadow: 3px 0 8px $white;
+                text-shadow: $textShadow;
             }
             h3 {
                 font-size: 2rem;
-                color: $white;
+                color: $secondary;
                 font-style: italic;
-                text-shadow: 3px 0 8px $black;
+                text-shadow: 0 0 5px $white;
             }
             p {
+                font-weight: 700;
                 color: $white;
             }
             @media(max-width: 767px) {
@@ -243,25 +245,22 @@ header {
     }
     .carousel {
         .item {
-            border: 1px solid $borders;
             padding: 30px;
             margin: 0 5px;
-            border-radius: 5px;
+            border-radius: 20px;
             transition: $transition;
             img {
               height: 250px;
               width: 100%;
-              border: 1px solid $primary
-            }
-            &:hover {
-                border: 1px solid $primary
+              border: 1px solid $primary;
+              box-shadow: $boxShadow;
             }
         }
     }
 }
 
 
-/***** subscribe *****/
+/***** newsletter *****/
 
 .subscribe {
     text-align: center;
@@ -292,6 +291,7 @@ header {
         border: 1px solid $white;
         color: $black;
         margin-right: 10px;
+        box-shadow: $boxShadow;
     }
     input[type="submit"] {
         background: transparent;
@@ -299,6 +299,7 @@ header {
         color: $white;
         cursor: pointer;
         transition: $transition;
+        box-shadow: $boxShadow;
         @media(max-width: 767px) {
             margin-top: 20px;
         }
@@ -331,6 +332,7 @@ header {
         padding: 30px 40px;
         text-align: center;
         transition: $transition;
+        box-shadow: $boxShadow;
         cursor: pointer;
         @media(max-width: 767px) {
             margin-bottom: 15px;
@@ -433,8 +435,8 @@ footer {
         display: flex;
         h2 {
             margin: auto;
-            color: $white;
-            font-size: 3rem
+            color: $secondary;
+            font-size: 3rem;
         }
     }
     article {
@@ -443,25 +445,46 @@ footer {
         gap: 20px;
         .item {
             height: 300px;
-            border: 1px solid $borders;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
+            margin: 20px;
+            border-radius: 20px;
             transition: $transition;
             text-align: center;
-            &:hover {
-                border: 1px solid $primary;
+            overflow: hidden;
+            border: 2px solid $primary;
+            box-shadow: 3px 5px 14px $black;
+            .image {
+                overflow: hidden;
+                img {
+                    width: 100%;
+                    height: 200px;
+                    display: block;
+                    border-radius: 20px 20px 0 0;
+                    transition: $transition;
+                    &:hover {
+                        transform: scale(120%);
+                    }
             }
-            img {
-                width: 100%;
-                height: 200px;
             }
-            h3 {
-                font-size: 1.2rem;
-            }
-            p {
-                font-size: 1.5rem;
-                font-weight: 700;
+            .text {
+                border-top: 1px solid $primary;
+                border-radius: 0 0 20px 20px;
+                padding: 10px 0;
+                h3 {
+                    font-size: 1.2rem;
+                    &::after {
+                        content: '';
+                        display: block;
+                        height: 3px;
+                        width: 8%;
+                        margin: 5px auto;
+                        background: $primary;
+                    }
+                }
+                p {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                   
+                }
             }
         }
     }
@@ -479,7 +502,7 @@ footer {
         display: flex;
         h2 {
             margin: auto;
-            color: $white;
+            color: $secondary;
             font-size: 3rem
         }
     }
@@ -489,13 +512,13 @@ footer {
         row);
         div {
             h3 {
-                font-size: 4rem;
-                font-weight: 800;
+                font-size: 5rem;
+                font-weight: 900;
                 transform: rotate(-90deg);
             }
             &:first-child {
                 flex: 0 0 30%;
-                @media(max-width: 949px) {
+                @media(max-width: 950px) {
                     flex: 0 0 100%;
                     transform: rotate(90deg);
                     h3 {
@@ -509,9 +532,20 @@ footer {
                     flex: 0 0 100%;
                     margin: auto;
                 }
+                h4 {
+                    font-size: 1.5rem;
+                }
                 p {
                     margin-bottom: 40px;
                     border-bottom: 2px solid $primary;
+                    padding-bottom: 20px;
+                    font-weight: 700;
+                    &::first-letter {
+                        font-size: 1.3rem;
+                    };
+                    &:last-child {
+                        border-bottom: none;
+                    }
                 }
             }
         }
@@ -530,17 +564,19 @@ footer {
         display: flex;
         h2 {
             margin: auto;
-            color: $white;
-            font-size: 3rem
+            color: $secondary;
+            font-size: 3rem;
         }
     }
     article {
+        
         @include flex(space-between,
         flex-start,
         row);
         div {
             &:first-child {
                 flex: 0 0 48%;
+                box-shadow: $boxShadow;
                 @media(max-width: 767px) {
                     flex: 0 0 100%;
                 }
@@ -559,7 +595,8 @@ footer {
                         width: 100%;
                         margin-bottom: 20px;
                         padding: 15px;
-                        border-radius: 15px;
+                        border-radius: 20px;
+                        box-shadow: $boxShadow;
                         resize: none;
                     }
                 }
@@ -580,7 +617,7 @@ footer {
         display: flex;
         h2 {
             margin: auto;
-            color: $white;
+            color: $secondary;
             font-size: 3rem;
         }
     }
@@ -596,8 +633,10 @@ footer {
                 }
                 img {
                     width: 100%;
+                    height: 350px;
                     border: 1px solid $primary;
-                    border-radius: 10px;
+                    border-radius: 20px;
+                    transition: $transition;
                 }
             }
             &:last-child {
@@ -608,19 +647,25 @@ footer {
                 h3 {
                     font-size: 2rem;
                     margin-bottom: 20px;
+                    &::after {
+                        content: '';
+                        display: block;
+                        height: 3px;
+                        width: 8%;
+                        margin: 5px 0;
+                        background: $primary;
+                    }
                 }
-                .price {
-                    color: $primary;
-                    font-size: 2rem;
-                    font-weight: 700;
-                    border: 2px solid $primary;
-                    display: inline;
-                    padding: 10px;
-                    border-radius: 10px;
+                h4 {
+                    font-size: 1.2rem;
                 }
                 p {
                     font-weight: 500;
                     padding: 10px 0;
+                }
+                #price {
+                    font-size: 2rem;
+                    font-weight: 700;
                 }
                 select {
                     border: 1px solid $primary;
@@ -644,8 +689,8 @@ footer {
         display: flex;
         h2 {
             margin: auto;
-            color: $white;
-            font-size: 3rem
+            color: $secondary;
+            font-size: 3rem;
         }
     }
 }

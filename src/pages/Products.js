@@ -15,18 +15,22 @@ const Products = () => {
             <article className='container'>
                 {products.map((product) => {
                     return (
-                        <div key={product.id} className="item">
-                            <Link to={`single/${product.id}`}>
-                                <img src={product.thumbnail} alt="" />
-                                <h3>{product.title.substring(0, 17)}</h3>
-                                <p>${product.price}</p>
+                        <div key={product.id} className='item'>
+                            <Link to={`/single/${product.id}`} className="">
+                                <div className='image'>
+                                    <img src={product.thumbnail} alt="product photo" />
+                                </div>
+                                <div className='text'>
+                                    <h3>{product.title.substring(0, 17)}</h3>
+                                    <p>${product.price}</p>
+                                </div>
                             </Link>
                         </div>
                     )
                 })}
             </article>
         </section>
-    )
-}
+    );
+};
 
 export default Products;

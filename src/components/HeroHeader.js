@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 
 const HeroHeader = () => {
   return (
@@ -9,7 +9,7 @@ const HeroHeader = () => {
           <h3>Grab-n-go tech</h3>
           <h1>FUSION SHOP</h1>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, suscipit!</p>
-          <button>Order now</button>
+          <Link to="products"><button>Order now</button></Link>
         </div>
       </article>
     </header>

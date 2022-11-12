@@ -1,50 +1,55 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import FeaturedItems from '../components/FeaturedItems';
+import ProductsContext from '../contexts/ProductsContext';
 
 const Single = () => {
 
-  const params = useParams();
+    const params = useParams();
+    const { products, setProducts } = useContext(ProductsContext);
 
-  return (
-    <section className="single">
-        <article className='heading'>
-          <h2>#Single product</h2>
-        </article>
-        <article className='container'>
-            <div id="slika">
-                <img src="img/boots.jpg" alt="BootsPhoto"/>
-            </div>
-            <div>
-                <h3 id="naziv">Boots</h3>
-                <div className="price">$210</div>
-                <p id="opis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, iste voluptatem? Dolorem
-                    soluta natus iste tenetur suscipit. Corporis velit esse deleniti animi dolore nam autem voluptatibus
-                    porro obcaecati, nisi eveniet beatae fuga magni!
-                    Eos corrupti maiores suscipit odit, ipsam ratione culpa nihil quo vitae ullam nobis labore tenetur
-                    fuga beatae a accusantium eum id fugiat!</p>
-                <form>
-                    <label>Quantity</label>
-                    <select id="qty" name="kolicina">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                    <button>Order now</button>
-                </form>
-                <hr/>
-                <span>Category:
-                <div className="category">
-                    <a href="/">Men</a>,
-                    <a href="/">Boots</a>
+    let product = products.filter(prod => {
+        if (prod.id == params.id) {
+            return prod;
+        }
+    });
+
+    let option = [];
+
+    for (let i = 1; i < product[0].stock; i++) {
+        option.push(<option key={i} value={`${i}`}>{i}</option>)
+        
+    }
+
+    return (
+        <section className="single">
+            <article className='heading'>
+                <h2>#Single product</h2>
+            </article>
+            <article className='container'>
+                <div>
+                    <img src={product[0].thumbnail} alt="Singlephoto" />
                 </div>
-                </span>
-                <hr/>
-            </div>
-        </article>
-        <FeaturedItems/>
-    </section>
-  )
-}
+                <div>
+                    <h4>{product[0].brand}</h4>
+                    <h4>Category: {product[0].category}</h4>
+                    <h3>{product[0].title}</h3>
+                    <p id='price'>${product[0].price}</p>
+                    <p>Rating: {product[0].rating}</p>
+                    <p>{product[0].description}</p>
+                    <form>
+                        <hr />
+                        <label>Quantity</label>
+                        <select name="quantity">
+                            {option}
+                        </select>
+                        <button>Add to cart</button>
+                    </form>
+                </div>
+            </article>
+            <FeaturedItems />
+        </section>
+    );
+};
 
 export default Single;
