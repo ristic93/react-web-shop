@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap');
 
 $headings: 'Poppins', sans-serif;
 $bodyFont: 'Lato', sans-serif;
@@ -33,6 +33,7 @@ $direction) {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -199,6 +200,7 @@ header {
                 font-size: 6rem;
                 color: $secondary;
                 text-shadow: $textShadow;
+                font-weight: 900;
             }
             h3 {
                 font-size: 2rem;
@@ -229,19 +231,14 @@ header {
 
 .featuredItems {
     h2 {
-        margin-bottom: 30px;
         &::after {
         content: '';
         display: block;
         height: 3px;
         width: 8%;
-        margin: 0 auto;
+        margin: 15px auto;
         background: $primary;
     }
-    }
-    p {
-        font-size: 1.5rem;
-        font-weight: 700;
     }
     .carousel {
         .item {
@@ -254,6 +251,15 @@ header {
               width: 100%;
               border: 1px solid $primary;
               box-shadow: $boxShadow;
+            }
+            h3 {
+                font-size: 1.5rem;
+                margin-top: 15px;
+                font-weight: 600;
+            }
+            p {
+                font-size: 1.5rem;
+                font-weight: 700;
             }
         }
     }
@@ -437,6 +443,7 @@ footer {
             margin: auto;
             color: $secondary;
             font-size: 3rem;
+            font-weight: 900;
         }
     }
     article {
@@ -503,7 +510,8 @@ footer {
         h2 {
             margin: auto;
             color: $secondary;
-            font-size: 3rem
+            font-size: 3rem;
+            font-weight: 900;
         }
     }
     article {
@@ -566,6 +574,7 @@ footer {
             margin: auto;
             color: $secondary;
             font-size: 3rem;
+            font-weight: 900;
         }
     }
     article {
@@ -585,6 +594,7 @@ footer {
                 flex: 0 0 48%;
                 @media(max-width: 767px) {
                     flex: 0 0 100%;
+                    margin-top: 50px;
                 }
                 form {
                     @include flex(space-between,
@@ -619,6 +629,7 @@ footer {
             margin: auto;
             color: $secondary;
             font-size: 3rem;
+            font-weight: 900;
         }
     }
     article {
@@ -691,6 +702,24 @@ footer {
             margin: auto;
             color: $secondary;
             font-size: 3rem;
+            font-weight: 900;
         }
+    }
+    .buttons {
+        @include flex(center,
+        center,
+        row);
+    }
+}
+
+/***** error 404 *****/
+
+.pageNotFound {
+    display: flex;
+    img {
+        margin: auto;
+        display: block;
+        width: 100%;
+        height: 90vh;
     }
 }

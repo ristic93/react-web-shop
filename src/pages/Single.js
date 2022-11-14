@@ -1,12 +1,17 @@
 import React, { useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import FeaturedItems from '../components/FeaturedItems';
 import ProductsContext from '../contexts/ProductsContext';
+import CartContext from '../contexts/CartConxtext';
 
 const Single = () => {
 
-    const params = useParams();
     const { products, setProducts } = useContext(ProductsContext);
+    const { cart, setCart } = useContext(CartContext);
+
+    const params = useParams();
+    const navigate = useNavigate();
+
 
     let product = products.filter(prod => {
         if (prod.id == params.id) {
@@ -14,11 +19,47 @@ const Single = () => {
         }
     });
 
-    let option = [];
 
+    let option = [];
     for (let i = 1; i < product[0].stock; i++) {
         option.push(<option key={i} value={`${i}`}>{i}</option>)
-        
+    }
+
+    const addToCart = (event) => {
+        event.preventDefault();
+
+        let tempIdx;
+        let tempProd = cart.filter((item, idx) => {
+            if (item.id == params.id) {
+                tempIdx = idx;
+                return item;
+            }
+        });
+
+
+        if (tempProd.length > 0) {
+            setCart((prev) => {
+                prev[tempIdx].qty =
+                    Number(prev[tempIdx].qty) + Number(event.target.quantity.value);
+                return [...prev];
+            })
+        } else {
+            let newCartItem = {
+                id: params.id,
+                img: product[0].thumbnail,
+                brand: product[0].brand,
+                category: product[0].category,
+                name: product[0].title,
+                price: product[0].price,
+                rating: product[0].rating,
+                desc: product[0].description,
+                qty: event.target.quantity.value
+            };
+            
+            setCart(cart => [...cart, newCartItem])
+        }
+
+        navigate("/products");
     }
 
     return (
@@ -37,13 +78,13 @@ const Single = () => {
                     <p id='price'>${product[0].price}</p>
                     <p>Rating: {product[0].rating}</p>
                     <p>{product[0].description}</p>
-                    <form>
+                    <form onSubmit={addToCart}>
                         <hr />
                         <label>Quantity</label>
                         <select name="quantity">
                             {option}
                         </select>
-                        <button>Add to cart</button>
+                        <button type='submit'>Add to cart</button>
                     </form>
                 </div>
             </article>
