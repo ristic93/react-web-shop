@@ -1,8 +1,8 @@
-#react-webshop
+# react-webshop
 
-##Live link: https://fusionshop.netlify.app
+## Live link: https://fusionshop.netlify.app
 
-###In order to make this web shop I was worked with useState, useEffect, createContext & useContext, React-Router-Dom, SCSS and Material Ui for styling table in cart section.
+### In order to make this web shop I was worked with useState, useEffect, createContext & useContext, React-Router-Dom, SCSS and Material Ui for styling table in cart section.
 
 ![Fusion-shop](https://user-images.githubusercontent.com/110178135/201700639-bdabef46-e29d-4ab4-95a0-9bee95a17a7e.png)
 
